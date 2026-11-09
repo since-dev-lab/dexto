@@ -38,9 +38,9 @@ jobs:
       group: changesets-release
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: corepack enable
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'pnpm'
@@ -137,7 +137,7 @@ jobs:
       VERSION: ${{ needs.derive-dexto-release-tag.outputs.version }}
     steps:
       - name: Checkout release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ env.RELEASE_TAG }}
 
@@ -145,7 +145,7 @@ jobs:
         run: corepack enable
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'pnpm'
@@ -171,7 +171,7 @@ jobs:
             --skip-checksums
 
       - name: Upload standalone artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: standalone-${{ matrix.target }}
           path: |
@@ -190,7 +190,7 @@ jobs:
       VERSION: ${{ needs.derive-dexto-release-tag.outputs.version }}
     steps:
       - name: Download standalone artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           pattern: standalone-*
           path: ${{ runner.temp }}/dexto-binaries
