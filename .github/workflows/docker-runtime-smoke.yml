@@ -33,6 +33,7 @@ jobs:
             - uses: actions/setup-node@v5
               with:
                   node-version: '20'
+                  package-manager-cache: false
             - name: Pull official Node image from ECR Public mirror
               run: |
                   node_version=$(sed -n 's/^ARG NODE_VERSION=//p' Dockerfile)
